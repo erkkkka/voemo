@@ -108,7 +108,7 @@
             }
 
             const entry = {
-                id: Date.now(),
+                id: Date.now(), // Uniikki ID yksittäisen poistoa varten
                 date: new Date().toLocaleDateString('fi-FI'),
                 group: group,
                 exercise: exercise,
@@ -144,8 +144,11 @@
                 card.className = 'history-card';
                 card.innerHTML = `
                     <div class="card-header">
-                        ${entry.exercise}
-                        <span class="card-date">${entry.date}</span>
+                        <span>${entry.exercise}</span>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="card-date">${entry.date}</span>
+                            <button class="btn-delete-item" onclick="deleteEntry(${entry.id})" title="Poista tämä">×</button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="stat-box">
@@ -164,6 +167,13 @@
                 `;
                 historyList.appendChild(card);
             });
+        }
+
+        function deleteEntry(id) {
+            let history = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            history = history.filter(item => item.id !== id);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+            loadHistory();
         }
 
         function clearFields() {

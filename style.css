@@ -210,6 +210,7 @@ h2 {
 .card-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-weight: bold;
     font-size: 1rem;
     color: #EEE;
@@ -219,6 +220,28 @@ h2 {
     color: #888;
     font-size: 0.8rem;
     font-weight: normal;
+}
+
+.btn-delete-item {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: #888;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.1s;
+}
+
+.btn-delete-item:hover {
+    background: #ff3333;
+    border-color: #ff3333;
+    color: #fff;
 }
 
 .card-body {
